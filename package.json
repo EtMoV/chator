@@ -1,0 +1,24 @@
+{
+  "name": "chator",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "nodemon server-chat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EtMoV/chator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EtMoV/chator/issues"
+  },
+  "homepage": "https://github.com/EtMoV/chator#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
