@@ -1,4 +1,5 @@
-const initHome = () => {
+const initHome = async () => {
+    await initAll()
     const roomListHtml = document.getElementsByClassName('room-list')[0]
     roomList.forEach(room => {
         const newAHtml = document.createElement('a')

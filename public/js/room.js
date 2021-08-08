@@ -25,7 +25,8 @@ const returnHome = () => {
     location.href = "home.html"
 }
 
-const initRoom = () => {
+const initRoom = async () => {
+    await initAll()
     room = findRoomByUrlId()
     if (!room) {
         // Bad room, redirect to home

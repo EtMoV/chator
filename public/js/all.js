@@ -1,38 +1,39 @@
-const roomList = [{
-        icon: "insurance_mutual.png",
-        id: "1XHE02",
-        name: "Assurance & Mutuelle"
-    },
-    {
-        icon: "politics.png",
-        id: "1XHE03",
-        name: "Politique"
-    }, {
-        icon: "kpop.png",
-        id: "1XHE04",
-        name: "K-pop"
-    }, {
-        icon: "police.png",
-        id: "1XHE05",
-        name: "Force de l'ordre"
-    }, {
-        icon: "antivax.png",
-        id: "1XHE06",
-        name: "Anti-vax"
-    }, {
-        icon: "troll.png",
-        id: "1XHE07",
-        name: "Troll"
-    }
-]
+let roomList
+const URL_SERVER = "http://localhost:3000/"
+
+const httpGet = (url, isJsonResponse) => {
+    return new Promise((resolve, reject) => {
+        const xmlHttp = new XMLHttpRequest()
+
+        xmlHttp.onreadystatechange = () => {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                isJsonResponse ? resolve(JSON.parse(xmlHttp.response)) : resolve(xmlHttp.responseText)
+            }
+        }
+
+        xmlHttp.open("GET", url, true)
+        xmlHttp.send(null)
+    })
+
+}
 
 const findRoomByUrlId = () => {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
     const id = urlParams.get('id')
     const room = roomList.find(room => {
         return room.id === id
     })
 
     return room
+}
+
+const getRoom = async () => {
+    const endpoint = 'rooms'
+    const url = `${URL_SERVER}${endpoint}`
+    roomList = await httpGet(url, true)
+}
+
+const initAll = async () => {
+    await getRoom()
 }
